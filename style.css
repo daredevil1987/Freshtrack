@@ -469,18 +469,165 @@
   }
   
   /* Mobile */
-  @media (max-width: 768px) {
-    .modal {
-      max-width: 100%;
-      padding: 24px 20px;
-      border-radius: 20px;
-    }
-  
-    .modal .modal-btns {
-      flex-direction: column !important;
-    }
-  
-    .modal .modal-btns button {
-      width: 100% !important;
-    }
+ /* ==========================================================
+   MOBILE RESPONSIVE IMPROVEMENTS
+   Paste at the END of style.css
+========================================================== */
+@media (max-width: 768px) {
+  /* Remove extra page padding */
+  body {
+    padding: 0;
+    background: #f3f4f6;
   }
+
+  /* Full-screen app */
+  .frame {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Compact top bar */
+  .topbar {
+    padding: 16px 18px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+
+  /* Scrollable tabs */
+  .nav {
+    padding: 10px 12px;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-tab {
+    padding: 10px 14px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .nav-icon {
+    font-size: 18px;
+  }
+
+  /* Main content padding */
+  .body {
+    padding: 16px;
+  }
+
+  /* Stats cards */
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .stat {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .stat-val {
+    font-size: 28px;
+  }
+
+  /* Search and button stacked */
+  .toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .toolbar input,
+  .btn-add {
+    width: 100%;
+  }
+
+  .btn-add {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Filter pills wrap nicely */
+  .pills {
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  /* Item cards */
+  .item-card {
+    padding: 16px;
+    border-radius: 20px;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .item-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+    border-radius: 16px;
+  }
+
+  .item-name {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .item-meta {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .btn-del {
+    font-size: 22px;
+    padding: 4px;
+  }
+
+  /* Modal popup */
+  .modal {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+
+  .modal-title {
+    font-size: 22px;
+  }
+
+  .modal .modal-btns {
+    flex-direction: column;
+  }
+
+  .modal .modal-btns button {
+    width: 100%;
+  }
+}
