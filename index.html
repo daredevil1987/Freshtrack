@@ -21,8 +21,20 @@
     <!-- TOPBAR -->
     <div class="topbar">
       <div class="logo">🌿 <span>Fresh</span>Track</div>
+
       <div class="topright">
         <span class="alert-badge" id="alert-badge"></span>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button
+          class="theme-toggle"
+          onclick="toggleTheme()"
+          title="Toggle Dark/Light Mode"
+          type="button"
+        >
+          🌙
+        </button>
+
         <div class="avatar">FET</div>
       </div>
     </div>
@@ -32,15 +44,19 @@
       <div class="nav-tab active" onclick="go('inv')">
         <span class="nav-icon">📦</span>Inventory
       </div>
+
       <div class="nav-tab" onclick="go('fridge')">
         <span class="nav-icon">❄️</span>My Fridge
       </div>
+
       <div class="nav-tab" onclick="go('cats')">
         <span class="nav-icon">🗂️</span>Categories
       </div>
+
       <div class="nav-tab" onclick="go('alerts')">
         <span class="nav-icon">🔔</span>Alerts
       </div>
+
       <div class="nav-tab" onclick="go('recipes')">
         <span class="nav-icon">🍳</span>Recipes
       </div>
@@ -56,37 +72,77 @@
             <div class="stat-label">Total</div>
             <div class="stat-val" id="s-total">0</div>
           </div>
+
           <div class="stat">
             <div class="stat-label">Fresh</div>
             <div class="stat-val g" id="s-g">0</div>
           </div>
+
           <div class="stat">
             <div class="stat-label">Expiring</div>
             <div class="stat-val a" id="s-a">0</div>
           </div>
+
           <div class="stat">
             <div class="stat-label">Expired</div>
             <div class="stat-val r" id="s-r">0</div>
           </div>
         </div>
 
+        <!-- Search + Add -->
         <div class="toolbar">
           <input
             type="text"
             id="search"
-            placeholder="Search all items…"
+            placeholder="Search all items..."
             oninput="renderInv()"
           />
-          <button class="btn-add" onclick="openModal()">+ Add Item</button>
+
+          <button
+            type="button"
+            class="btn-add"
+            onclick="openModal()"
+          >
+            + Add Item
+          </button>
         </div>
 
+        <!-- Filters -->
         <div class="pills">
-          <div class="pill f-all" id="p-all" onclick="setFilter('all')">All</div>
-          <div class="pill" id="p-g" onclick="setFilter('g')">🟢 Fresh</div>
-          <div class="pill" id="p-a" onclick="setFilter('a')">🟡 Expiring</div>
-          <div class="pill" id="p-r" onclick="setFilter('r')">🔴 Expired</div>
+          <div
+            class="pill f-all"
+            id="p-all"
+            onclick="setFilter('all')"
+          >
+            All
+          </div>
+
+          <div
+            class="pill"
+            id="p-g"
+            onclick="setFilter('g')"
+          >
+            🟢 Fresh
+          </div>
+
+          <div
+            class="pill"
+            id="p-a"
+            onclick="setFilter('a')"
+          >
+            🟡 Expiring
+          </div>
+
+          <div
+            class="pill"
+            id="p-r"
+            onclick="setFilter('r')"
+          >
+            🔴 Expired
+          </div>
         </div>
 
+        <!-- Inventory List -->
         <div class="items" id="inv-list"></div>
       </div>
 
@@ -97,14 +153,17 @@
             <div class="stat-label">In Fridge</div>
             <div class="stat-val" id="sf-total">0</div>
           </div>
+
           <div class="stat">
             <div class="stat-label">Fresh</div>
             <div class="stat-val g" id="sf-g">0</div>
           </div>
+
           <div class="stat">
             <div class="stat-label">Expiring</div>
             <div class="stat-val a" id="sf-a">0</div>
           </div>
+
           <div class="stat">
             <div class="stat-label">Expired</div>
             <div class="stat-val r" id="sf-r">0</div>
@@ -196,7 +255,7 @@
         />
       </div>
 
-      <!-- Buttons -->
+      <!-- Modal Buttons -->
       <div class="modal-btns">
         <button
           type="button"
@@ -205,6 +264,7 @@
         >
           Cancel
         </button>
+
         <button
           type="button"
           class="btn-save"
