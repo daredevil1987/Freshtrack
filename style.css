@@ -1,0 +1,486 @@
+/* ---------- RESET ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* ---------- VARIABLES ---------- */
+  :root {
+    --bg1: #ffffff;
+    --bg2: #f7f7f9;
+    --txt1: #111827;
+    --txt2: #6b7280;
+    --bdr: rgba(0, 0, 0, 0.08);
+  
+    --green: #10b981;
+    --green-dark: #059669;
+  
+    --fresh-bg: #ecfdf5;
+    --fresh-text: #065f46;
+  
+    --exp-bg: #fffbeb;
+    --exp-text: #92400e;
+  
+    --expired-bg: #fef2f2;
+    --expired-text: #991b1b;
+  
+    --radius: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+  
+    --font: 'Inter', sans-serif;
+  }
+  
+  /* ---------- BODY ---------- */
+  body {
+    font-family: var(--font);
+    background: #f0f4f8;
+    color: var(--txt1);
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  /* ---------- MAIN FRAME ---------- */
+  .frame {
+    width: min(96vw, 1400px);
+    height: min(94vh, 1000px);
+    margin: auto;
+    background: var(--bg1);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--bdr);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* ---------- TOPBAR ---------- */
+  .topbar {
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--bdr);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .logo span {
+    color: var(--green);
+  }
+  
+  .topright {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  
+  .alert-badge {
+    display: none;
+    margin-right: 12px;
+    padding: 4px 10px;
+    background: var(--expired-bg);
+    color: var(--expired-text);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  /* ---------- NAVIGATION ---------- */
+  .nav {
+    display: flex;
+    gap: 10px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--bdr);
+    overflow-x: auto;
+    background: var(--bg1);
+  }
+  
+  .nav-tab {
+    padding: 12px 20px;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    color: var(--txt2);
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  
+  .nav-tab:hover {
+    background: var(--bg2);
+  }
+  
+  .nav-tab.active {
+    background: var(--fresh-bg);
+    color: var(--fresh-text);
+  }
+  
+  .nav-icon {
+    font-size: 20px;
+  }
+  
+  /* ---------- BODY ---------- */
+  .body {
+    flex: 1;
+    overflow-y: auto;
+    background: var(--bg2);
+    padding: 30px;
+  }
+  
+  .section {
+    display: none;
+  }
+  
+  .section.active {
+    display: block;
+  }
+  
+  /* ---------- STATS ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .stat {
+    background: white;
+    border: 1px solid var(--bdr);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+    color: var(--txt2);
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .stat-val {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  
+  .stat-val.g {
+    color: #10b981;
+  }
+  
+  .stat-val.a {
+    color: #d97706;
+  }
+  
+  .stat-val.r {
+    color: #dc2626;
+  }
+  
+  /* ---------- TOOLBAR ---------- */
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  
+  .toolbar input,
+  .form-input {
+    flex: 1;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--bdr);
+    border-radius: var(--radius);
+    font-size: 14px;
+    outline: none;
+    background: #ffffff;
+  }
+  
+  /* ---------- BUTTONS ---------- */
+  .btn-add,
+  .btn-save {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .btn-cancel {
+    background: white;
+    border: 1px solid var(--bdr);
+    padding: 14px 22px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  /* ---------- FILTER PILLS ---------- */
+  .pills {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .pill {
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: white;
+    border: 1px solid var(--bdr);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .f-all {
+    background: #111827;
+    color: white;
+  }
+  
+  /* ---------- ITEMS ---------- */
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .item-card {
+    background: white;
+    border: 1px solid var(--bdr);
+    border-radius: 22px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .item-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  
+  .item-icon.g {
+    background: var(--fresh-bg);
+  }
+  
+  .item-icon.a {
+    background: var(--exp-bg);
+  }
+  
+  .item-icon.r {
+    background: var(--expired-bg);
+  }
+  
+  .item-info {
+    flex: 1;
+  }
+  
+  .item-name {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .item-meta {
+    font-size: 14px;
+    color: var(--txt2);
+    margin-top: 4px;
+  }
+  
+  .badge {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  .badge.g {
+    background: var(--fresh-bg);
+    color: var(--fresh-text);
+  }
+  
+  .badge.a {
+    background: var(--exp-bg);
+    color: var(--exp-text);
+  }
+  
+  .badge.r {
+    background: var(--expired-bg);
+    color: var(--expired-text);
+  }
+  
+  .btn-del {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    color: #6b7280;
+  }
+  
+  /* ---------- EMPTY STATES ---------- */
+  .empty,
+  .fridge-empty {
+    text-align: center;
+    padding: 50px;
+    color: var(--txt2);
+  }
+  
+  /* ==========================================================
+     MODAL (FULLY FIXED)
+  ========================================================== */
+  /* ==========================================================
+   FINAL MODAL FIX
+   Replace ONLY the modal section in your style.css
+   (from .modal-overlay to the mobile media query)
+========================================================== */
+
+/* Dark background overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 9999;
+  }
+  
+  .modal-overlay.open {
+    display: flex;
+  }
+  
+  /* Popup box */
+  .modal {
+    background: #ffffff;
+    width: 100%;
+    max-width: 760px;
+    border-radius: 24px;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  /* Title */
+  .modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #111827;
+  }
+  
+  /* Every field occupies full row */
+  .modal .form-field {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+    clear: both;
+  }
+  
+  /* Labels */
+  .modal .form-label {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 8px !important;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+  }
+  
+  /* Inputs and dropdowns */
+  .modal .form-input,
+  .modal input,
+  .modal select {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;          /* IMPORTANT: overrides flex:1 */
+    margin: 0 !important;
+    padding: 14px 16px !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Button row */
+  .modal .modal-btns {
+    display: flex !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 28px !important;
+  }
+  
+  /* Buttons */
+  .modal .modal-btns button {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 14px 20px !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Cancel button */
+  .modal .btn-cancel {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+  
+  /* Save button */
+  .modal .btn-save {
+    background: #10b981 !important;
+    color: #ffffff !important;
+    border: none !important;
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    .modal {
+      max-width: 100%;
+      padding: 24px 20px;
+      border-radius: 20px;
+    }
+  
+    .modal .modal-btns {
+      flex-direction: column !important;
+    }
+  
+    .modal .modal-btns button {
+      width: 100% !important;
+    }
+  }
