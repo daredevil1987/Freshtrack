@@ -312,6 +312,31 @@ let items = [
       closeModal();
     }
   });
+  function toggleTheme() {
+    const body = document.body;
+    const isDark = body.classList.toggle('dark');
+  
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  
+    const btn = document.querySelector('.theme-toggle');
+    if (btn) {
+      btn.textContent = isDark ? '☀️' : '🌙';
+    }
+  }
+  
+  function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const btn = document.querySelector('.theme-toggle');
+  
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      if (btn) btn.textContent = '☀️';
+    } else {
+      document.body.classList.remove('dark');
+      if (btn) btn.textContent = '🌙';
+    }
+  }
   
   // ---------- INITIAL LOAD ----------
+  loadTheme();
   renderAll();
