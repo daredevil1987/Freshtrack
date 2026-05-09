@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreshTrack — Smart Food Expiry Tracker</title>
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="frame">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="logo">🌿 <span>Fresh</span>Track</div>
+      <div class="topright">
+        <span class="alert-badge" id="alert-badge"></span>
+        <div class="avatar">FET</div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="nav">
+      <div class="nav-tab active" onclick="go('inv')">
+        <span class="nav-icon">📦</span>Inventory
+      </div>
+      <div class="nav-tab" onclick="go('fridge')">
+        <span class="nav-icon">❄️</span>My Fridge
+      </div>
+      <div class="nav-tab" onclick="go('cats')">
+        <span class="nav-icon">🗂️</span>Categories
+      </div>
+      <div class="nav-tab" onclick="go('alerts')">
+        <span class="nav-icon">🔔</span>Alerts
+      </div>
+      <div class="nav-tab" onclick="go('recipes')">
+        <span class="nav-icon">🍳</span>Recipes
+      </div>
+    </div>
+
+    <!-- MAIN BODY -->
+    <div class="body">
+
+      <!-- INVENTORY -->
+      <div class="section active" id="sec-inv">
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Total</div>
+            <div class="stat-val" id="s-total">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Fresh</div>
+            <div class="stat-val g" id="s-g">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Expiring</div>
+            <div class="stat-val a" id="s-a">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Expired</div>
+            <div class="stat-val r" id="s-r">0</div>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <input
+            type="text"
+            id="search"
+            placeholder="Search all items…"
+            oninput="renderInv()"
+          />
+          <button class="btn-add" onclick="openModal()">+ Add Item</button>
+        </div>
+
+        <div class="pills">
+          <div class="pill f-all" id="p-all" onclick="setFilter('all')">All</div>
+          <div class="pill" id="p-g" onclick="setFilter('g')">🟢 Fresh</div>
+          <div class="pill" id="p-a" onclick="setFilter('a')">🟡 Expiring</div>
+          <div class="pill" id="p-r" onclick="setFilter('r')">🔴 Expired</div>
+        </div>
+
+        <div class="items" id="inv-list"></div>
+      </div>
+
+      <!-- MY FRIDGE -->
+      <div class="section" id="sec-fridge">
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">In Fridge</div>
+            <div class="stat-val" id="sf-total">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Fresh</div>
+            <div class="stat-val g" id="sf-g">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Expiring</div>
+            <div class="stat-val a" id="sf-a">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Expired</div>
+            <div class="stat-val r" id="sf-r">0</div>
+          </div>
+        </div>
+
+        <div class="items" id="fridge-list"></div>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="section" id="sec-cats">
+        <div id="cat-body"></div>
+      </div>
+
+      <!-- ALERTS -->
+      <div class="section" id="sec-alerts">
+        <div id="alert-list"></div>
+      </div>
+
+      <!-- RECIPES -->
+      <div class="section" id="sec-recipes">
+        <div id="recipe-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADD ITEM MODAL -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-title">Add New Item</div>
+
+      <!-- Item Name -->
+      <div class="form-field">
+        <label class="form-label" for="f-name">Item Name *</label>
+        <input
+          class="form-input"
+          id="f-name"
+          type="text"
+          placeholder="e.g. Parle-G Biscuits"
+        />
+      </div>
+
+      <!-- Category -->
+      <div class="form-field">
+        <label class="form-label" for="f-cat">Category</label>
+        <select class="form-input" id="f-cat">
+          <option value="Fruits">🍎 Fruits</option>
+          <option value="Vegetables">🥬 Vegetables</option>
+          <option value="Dairy">🥛 Dairy & Milk</option>
+          <option value="Eggs">🥚 Eggs</option>
+          <option value="Bakery">🍞 Bread & Bakery</option>
+          <option value="Snacks">🍪 Snacks & Biscuits</option>
+          <option value="Beverages">🧃 Drinks & Juices</option>
+          <option value="Meat">🍗 Meat & Chicken</option>
+          <option value="Seafood">🐟 Fish & Seafood</option>
+          <option value="Frozen">🧊 Frozen Foods</option>
+          <option value="Cooked">🍱 Cooked Food & Leftovers</option>
+          <option value="Grains">🌾 Rice, Pasta & Cereals</option>
+          <option value="Herbs">🌿 Herbs & Spices</option>
+          <option value="Nuts">🥜 Nuts & Dry Fruits</option>
+          <option value="Canned">🥫 Canned Foods</option>
+          <option value="Condiments">🫙 Sauces & Spreads</option>
+          <option value="Sweets">🍫 Chocolates & Sweets</option>
+          <option value="BabyFood">🍼 Baby Food</option>
+          <option value="PetFood">🐶 Pet Food</option>
+          <option value="Other">📦 Other</option>
+        </select>
+      </div>
+
+      <!-- Expiry Date -->
+      <div class="form-field">
+        <label class="form-label" for="f-expiry">Expiry Date *</label>
+        <input
+          class="form-input"
+          type="date"
+          id="f-expiry"
+        />
+      </div>
+
+      <!-- Quantity -->
+      <div class="form-field">
+        <label class="form-label" for="f-qty">Quantity</label>
+        <input
+          class="form-input"
+          id="f-qty"
+          type="text"
+          placeholder="e.g. 1 pack"
+        />
+      </div>
+
+      <!-- Buttons -->
+      <div class="modal-btns">
+        <button
+          type="button"
+          class="btn-cancel"
+          onclick="closeModal()"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn-save"
+          onclick="saveItem()"
+        >
+          Save Item
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
